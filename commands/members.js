@@ -8,7 +8,7 @@ module.exports = {
   async execute(interaction) {
     const guild = interaction.guild;
     await guild.members.fetch();
-    const memberUsernames = guild.members.cache.map(m => m.user.username);
+    const memberUsernames = [...guild.members.cache.values()].map(m => m.user.username);
     await interaction.reply(`Server members: ${memberUsernames.join(", ")}`);
   }
 }

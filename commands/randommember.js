@@ -8,7 +8,7 @@ module.exports = {
     async execute(interaction) {
       const guild = interaction.guild;
       await guild.members.fetch();
-      const memberArray = guild.members.cache.filter(m => !m.user.bot).map(m => m.user);
+      const memberArray = [...guild.members.cache.values()].filter(m => !m.user.bot).map(m => m.user);
     
       if (memberArray.length === 0){
         return interaction.reply("No members found!");
